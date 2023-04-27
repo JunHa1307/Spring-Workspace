@@ -3,4 +3,4 @@
 /Servers/
 *.class
 .classPath
-/target/
+target/
