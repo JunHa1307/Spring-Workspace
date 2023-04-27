@@ -2,8 +2,12 @@ package com.kh.spring.member.model.vo;
 
 import java.sql.Date;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 /*
  * - 자동 코드 생성 라이브러리
@@ -25,13 +29,18 @@ import lombok.Data;
 @Getter // getter 메서드 자동 생성
 @ToString // ToString 자동생성
 @EqualsAndHashCode // equals, hashcode 자동생성
-*/
 @Data // 저기서부터 여기까지 다주세요
-@Builder // Member m =new Member.builder().address("추가할 값").userId("추가할 값").build();
+*/
+@Setter // setter 메서드 자동 생성
+@Getter // getter 메서드 자동 생성
+@ToString // ToString 자동생성
+@NoArgsConstructor // 기본생성자
+@AllArgsConstructor // 모든 필드를 매개변수로 갖는 생성자
+@Builder // Member m = new Member.builder().address("추가할 값").userId("추가할 값").build();
 public class Member {
 	private int userNo;
 	private String userId;
-	private String userpwd;
+	private String userPwd;
 	private String nickName;
 	private String phone;
 	private String address;
