@@ -2,9 +2,10 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/maven-v4_0_0.xsd">
 	<!-- 
-		pom.xml 구조 : 프로젝트에 대한 정보 groupId : 2번째 레벨까지의 패키지 구조(com.kh)
-						artifactId : 3번째 레벨의 패키지명(프로그램명)
-						packaging : 배포할 때 압축 형식
+		pom.xml 구조 : 프로젝트에 대한 정보 
+					groupId : 2번째 레벨까지의 패키지 구조(com.kh)
+					artifactId : 3번째 레벨의 패키지명(프로그램명)
+					packaging : 배포할때 압축형식
 	 -->
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.kh</groupId>
@@ -14,10 +15,9 @@
 	<version>1.0.0-BUILD-SNAPSHOT</version>
 	
 	<!-- 
-		properties : 이 문서에서 사용할 환경설정 내용들을 담은 변수 (태그명이 곧 변수명)
-					 현재 문서 안에서 ${태그명} 해당 값을 불러올 수 있음
+		properties: 이 문서에서 사용할 환경설정 내용들을 담은 변수(태그명이 곧 변수명)
+					현재 문서 안에서 ${태그명} 해당값을 불러올 수 있음
 	 -->
-	
 	<properties>
 		<java-version>11</java-version>
 		<org.springframework-version>5.3.20</org.springframework-version>
@@ -27,7 +27,8 @@
 	
 	<!-- 
 		repositories : 기본 저장소(메이븐 레파지토리)에서 다운받지 못하는 경우, 직접 다운받고자하는
-		저장소를 등록	
+		저장소를 등록
+		
 	 -->
 	<repositories>
 		<repository>
@@ -36,7 +37,8 @@
 		</repository>
 	</repositories>
 	
-	<!-- dependencies : 프로젝트에서 사용할 라이브러리들을 담는 곳(내가 받고자 하는 라이브러리) -->
+	<!-- 현재 필요한 jar파일 등록 가능
+		dependencies : 프로젝트에서 사용할 라이브러리들을 담는 곳(내가 받고자 하는 라이브러리) -->
 	<dependencies>
 		<!-- Spring -->
 		<dependency>
@@ -122,6 +124,7 @@
 			<version>4.0.1</version>
 			<scope>provided</scope>
 		</dependency>
+		
 		<dependency>
 			<groupId>javax.servlet.jsp</groupId>
 			<artifactId>jsp-api</artifactId>
@@ -140,11 +143,11 @@
 			<artifactId>junit</artifactId>
 			<version>4.7</version>
 			<scope>test</scope>
-		</dependency> 
+		</dependency>       
 		
-		<!-- 추가적으로 필요한 라이브러리 artifact 기준으로 -->
+		<!-- 추가적으로 필요한 라이브러리 -->
 		<!-- 1. DB관련 라이브러리 추가 -->
-		<!-- 1) ojdbc 라이브러리 추가 -->
+		<!-- 1) ojdbc6 라이브러리 추가 -->
 		<!-- https://mvnrepository.com/artifact/com.oracle.database.jdbc/ojdbc6 -->
 		<dependency>
 		    <groupId>com.oracle.database.jdbc</groupId>
@@ -152,15 +155,16 @@
 		    <version>11.2.0.4</version>
 		</dependency>
 		
-		<!-- 2) 스프링에서 jdbc를 사용하기위한 라이브러리 -->
+		<!-- 2) 스프링에서 jdbc를 사용하기 위한 라이브러리 -->
 		<!-- https://mvnrepository.com/artifact/org.springframework/spring-jdbc -->
+		<!-- 다운받고자 할때 artifactId 기준으로 검색하기 -->
 		<dependency>
 		    <groupId>org.springframework</groupId>
 		    <artifactId>spring-jdbc</artifactId>
 		    <version>${org.springframework-version}</version>
 		</dependency>
 		
-		<!-- 3) mybatis 라이브러리 -->
+		<!-- 3) mybatis를 이용한 라이브러리 -->
 		<!-- https://mvnrepository.com/artifact/org.mybatis/mybatis -->
 		<dependency>
 		    <groupId>org.mybatis</groupId>
@@ -168,7 +172,7 @@
 		    <version>3.5.10</version>
 		</dependency>
 		
-		<!-- 4) 스프링에서 mybatis를 사용하기위한 라이브러리 -->
+		<!-- 4) mybatis 스프링에서 사용하기 위한 라이브러리 -->
 		<!-- https://mvnrepository.com/artifact/org.mybatis/mybatis-spring -->
 		<dependency>
 		    <groupId>org.mybatis</groupId>
@@ -184,7 +188,8 @@
 		    <version>1.4</version>
 		</dependency>
 		
-		<!-- 롬복 라이브러리 : getter setter등 자동생성 라이브러리 -->
+		<!-- 롬복 라이브러리 -->
+		<!-- vo클래스의 getter/setter 생성자 등등 자동으로 만들어주는 라이브러리 -->
 		<!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
 		<dependency>
 		    <groupId>org.projectlombok</groupId>
@@ -193,7 +198,7 @@
 		    <scope>provided</scope>
 		</dependency>
 		
-		<!-- JSTL 라이브러리 -->
+		<!-- JSTL -->
 		<!-- https://mvnrepository.com/artifact/javax.servlet/jstl -->
 		<dependency>
 		    <groupId>javax.servlet</groupId>
@@ -201,13 +206,44 @@
 		    <version>1.2</version>
 		</dependency>
 		
-		<!-- Taglibs -->
+		<!-- taglibs -->
 		<!-- https://mvnrepository.com/artifact/taglibs/standard -->
 		<dependency>
 		    <groupId>taglibs</groupId>
 		    <artifactId>standard</artifactId>
 		    <version>1.1.2</version>
 		</dependency>
+		
+		<!-- 스프링 시큐리티 라이브러리(core, web, config) -->
+		<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-core -->
+		<dependency>
+		    <groupId>org.springframework.security</groupId>
+		    <artifactId>spring-security-core</artifactId>
+		    <version>5.7.5</version>
+		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-web -->
+		<dependency>
+		    <groupId>org.springframework.security</groupId>
+		    <artifactId>spring-security-web</artifactId>
+		    <version>5.7.5</version>
+		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-config -->
+		<dependency>
+		    <groupId>org.springframework.security</groupId>
+		    <artifactId>spring-security-config</artifactId>
+		    <version>5.7.5</version>
+		</dependency>
+		
+		<!-- GSON -->
+		<!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
+		<dependency>
+		    <groupId>com.google.code.gson</groupId>
+		    <artifactId>gson</artifactId>
+		    <version>2.9.0</version>
+		</dependency>
+		
 		
 	</dependencies>
     <build>
@@ -229,9 +265,9 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>2.5.1</version>
+                <version>3.8.1</version> <!-- 2.x버전은 자바 1.6 버전 아래에서 사용, 1.6버전이상시 3.0이상 버전을 사용하면 된다. -->
                 <configuration>
-                    <source>${java-version}</source>
+                    <source>${java-version}</source> <!-- source, target은 현재 사용하는 jdk버전에 맞춰서 작성 -->
                     <target>${java-version}</target>
                     <compilerArgument>-Xlint:all</compilerArgument>
                     <showWarnings>true</showWarnings>
