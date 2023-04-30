@@ -16,12 +16,12 @@ import javax.servlet.http.HttpServletRequest;
  * Servlet Filter implementation class initFilter
  */
 @WebFilter(filterName="initFilter", urlPatterns = "/*")
-public class initFilter extends HttpFilter implements Filter {
+public class InitFilter extends HttpFilter implements Filter {
 	
     /**
      * Default constructor. 
      */
-    public initFilter() {
+    public InitFilter() {
         // TODO Auto-generated constructor stub
     }
 
