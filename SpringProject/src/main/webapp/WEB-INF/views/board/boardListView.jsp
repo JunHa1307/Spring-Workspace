@@ -3,6 +3,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="pi" value="${map.pi }"/>
 <c:set var="list" value="${map.list }"/>
+<c:if test="${ !empty param.condition }">
+	<c:set var="sUrl" value="&condition=${param.condition }&keyword=${param.keyword }"/>
+</c:if>
 <c:forEach items="${boardTypeList }" var="bt">
 	<c:if test="${bt.boardCd == boardCode }">
 		<c:set var="boardNm" value="${bt.boardName}"/>
@@ -98,9 +101,9 @@
 							<td class="bno">${b.boardNo }</td>
 							<td><c:if test="${!empty b.thumbnail }">
 									<img class="list-thumbnail"
-										src="${contextPath }${b.thumbnail }">
+										src="${contextPath }/resources/images/boardT/${b.thumbnail }">
 								</c:if> ${b.boardTitle }</td>
-							<td>${b.boardWriter }</td>
+							<td>${b.nickName }</td>
 							<td>${b.count }</td>
 							<td>${b.createDate }</td>
 						</tr>
@@ -162,14 +165,14 @@
 			<form id="searchForm" action="${boardCode }" method="get" align="center">
 				<div class="select">
 					<select class="custom-select" name="condition">
-						<option value="writer">작성자</option>
-						<option value="title">제목</option>
-						<option value="content">내용</option>
-						<option value="titleAndContent">제목+내용</option>
+						<option value="writer" ${param.condition == 'writer' ? 'selected':'' }>작성자</option>
+						<option value="title" ${param.condition == 'title' ? 'selected':'' }>제목</option>
+						<option value="content" ${param.condition == 'content' ? 'selected':'' }>내용</option>
+						<option value="titleAndContent" ${param.condition == 'titleAndContent' ? 'selected':'' }>제목+내용</option>
 					</select>
 				</div>
 				<div class="text">
-					<input type="text" class="form-control" name="keyword">
+					<input type="text" class="form-control" name="keyword" value="${param.keyword }">
 				</div>
 				<button type="submit" class="searchBtn btn btn-secondary">검색</button>
 			</form>
