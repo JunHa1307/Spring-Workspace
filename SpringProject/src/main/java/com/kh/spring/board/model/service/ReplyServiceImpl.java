@@ -21,4 +21,12 @@ public class ReplyServiceImpl implements ReplyService{
 	public List<Reply> selectReplyList(int bno) {
 		return dao.selectReplyList(bno);
 	}
+	
+	public int updateReply(Reply reply) {
+		return dao.updateReply(reply);
+	}
+	
+	public int deleteReply(Reply reply) {
+		return dao.deleteReply(reply);
+	}
 }

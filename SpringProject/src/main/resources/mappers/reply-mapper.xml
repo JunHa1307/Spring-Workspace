@@ -38,4 +38,15 @@
 		WHERE REF_BNO = #{bno} AND R.STATUS = 'Y'
 		ORDER BY CREATE_DATE ASC
 	</select>
+	
+	<update id="updateReply" parameterType="reply">
+		UPDATE REPLY SET
+			REPLY_CONTENT = #{replyContent}
+		WHERE REPLY_NO = #{replyNo}
+	</update>
+	
+	<delete id="deleteReply" parameterType="reply">
+		DELETE FROM REPLY
+		WHERE REPLY_NO = #{replyNo}
+	</delete>
 </mapper>

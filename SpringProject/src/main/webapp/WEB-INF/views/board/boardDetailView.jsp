@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 	<style>
-			/* 프로필 */
+		/* 프로필 */
 		.board-writer > img{
 		    width: 40px;
 		    height: 40px;
@@ -120,12 +120,29 @@
 					
 				</tbody>
 			</table>
+			<div class="modal fade" id="updateModal" role="dialog">
+			    <div class="modal-dialog">
+			        <div class="modal-content">
+			            <div class="modal-header">
+			                <h4 class="modal-title">댓글 수정</h4>
+			                <button type="button" class="close" data-dismiss="modal">×</button>
+			            </div>
+			            <div class="modal-body">
+			            	<textarea class="form-control" name="replyContent" id="updateReplyContent" rows="2" cols="55" 
+							style="resize:none; width:100%;"></textarea>
+			            </div>
+			            <div class="modal-footer">
+	   						<button type="button" id="updateModalBtn" class="btn btn-primary">확인</button>
+			            </div>
+			        </div>
+			    </div>
+			</div>
 				<script>
 					
 					$(function(){
 						selectReplyList();
 						
-						//setInterval(selectReplyList , 100);
+						//setInterval(selectReplyList , 100);\
 					});
 					
 					function selectReplyList(){
@@ -141,7 +158,11 @@
 										   +"<td>"+reply.replyWriter +"</td>"
 										   +"<td>"+reply.replyContent +"</td>"
 										   +"<td>"+reply.createDate +"</td>"
-								   +  "</tr>";
+							    if(reply.replyWriter == '${loginUser.nickName}'){	   
+									html += "<td><a class='btn-sm btn-primary' href='javascript:void(0)' onclick='updateModal("+reply.replyNo+");'>수정하기</a></td>"
+											+"<td><a class='btn-sm btn-danger' href='javascript:void(0)' onclick='deleteReply("+reply.replyNo+");'>삭제하기</a></td>";
+									}
+									html +=  "</tr>";
 								}
 								$("#replyArea tbody").html(html);
 								$("#rcount").html(result.length);
@@ -151,6 +172,13 @@
 								console.log(err);
 							} 
 						})
+					}
+					
+					function updateModal(replyNo){
+						$("#updateModalBtn").click(function(){
+							updateReply(replyNo);
+						});
+						$("#updateModal").modal('show');
 					}
 					
 					function insertReply(){
@@ -164,6 +192,7 @@
 							},
 							type: 'POST',
 							success : function (result){
+								$("#updateModal").modal('hide');
 								if(result == "1"){
 									alertify.alert("서비스 요청 성공", '댓글 등록 성공' );
 								}else{
@@ -179,6 +208,55 @@
 						
 					}
 					
+					function updateReply(replyNo){
+						
+						$.ajax({
+							url: "${contextPath}/reply/update",
+							data : {
+								refBno : '${b.boardNo}',
+								replyContent: $("#updateReplyContent").val(),
+								replyNo : replyNo
+							},
+							type: 'POST',
+							success : function (result){
+								if(result == "1"){
+									alertify.alert("서비스 요청 성공", '댓글 수정 성공' );
+								}else{
+									alertify.alert("서비스 요청 실패", '댓글 수정 실패' );
+								}
+								selectReplyList();
+							},
+							complete : function(){
+								$("#replyContent").val("");
+							}
+							
+						})
+						
+					}
+					
+					function deleteReply(replyNo){
+						
+						$.ajax({
+							url: "${contextPath}/reply/delete",
+							data : {
+								replyNo : replyNo
+							},
+							type: 'POST',
+							success : function (result){
+								if(result == "1"){
+									alertify.alert("서비스 요청 성공", '댓글 삭제 성공' );
+								}else{
+									alertify.alert("서비스 요청 실패", '댓글 삭제 실패' );
+								}
+								selectReplyList();
+							},
+							complete : function(){
+								$("#replyContent").val("");
+							}
+							
+						})
+						
+					}
 				</script>
 		</div>
 	</div>

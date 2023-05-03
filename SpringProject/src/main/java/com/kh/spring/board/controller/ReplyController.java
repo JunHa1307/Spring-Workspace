@@ -43,8 +43,17 @@ public class ReplyController {
 		
 		return new Gson().toJson(rlist);
 	}
-	// 댓글 삭제
 	
 	// 댓글 수정
+	@PostMapping("/update")
+	public int updateReply(Reply reply) {
+		return replyService.updateReply(reply);
+	}
+	
+	// 댓글 삭제
+	@PostMapping("/delete")
+	public int deleteReply(Reply reply) {
+		return replyService.deleteReply(reply);
+	}
 	
 }
