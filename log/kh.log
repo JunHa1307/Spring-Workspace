@@ -1,7 +1,0 @@
-[10:35:55.506] - 0:0:0:0:0:0:0:1:web::http://localhost:8081/spring/board/list/N
-[10:36:04.133] - 0:0:0:0:0:0:0:1:web::http://localhost:8081/spring/board/list/N
-[10:36:06.963] - 0:0:0:0:0:0:0:1:web::http://localhost:8081/spring/board/list/N
-[10:36:46.792] - 0:0:0:0:0:0:0:1:web::http://localhost:8081/spring/member/login?userId=alsrudals&userPwd=1234&saveId=on
-[10:36:46.909] - 0:0:0:0:0:0:0:1:web:alsrudals:http://localhost:8081/spring/main
-[10:36:46.995] - 0:0:0:0:0:0:0:1:web:alsrudals:http://localhost:8081/spring/member/selectAll
-[10:36:48.751] - 0:0:0:0:0:0:0:1:web:alsrudals:http://localhost:8081/spring/board/list/N
