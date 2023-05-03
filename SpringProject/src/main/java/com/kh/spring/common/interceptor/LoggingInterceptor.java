@@ -89,6 +89,7 @@ public class LoggingInterceptor extends HandlerInterceptorAdapter{
 		return true;
 	}
 	
+	// ip 가져오기
 	public String getIp(HttpServletRequest request){
        String ip = request.getHeader("X-Forwarded-For");
    
