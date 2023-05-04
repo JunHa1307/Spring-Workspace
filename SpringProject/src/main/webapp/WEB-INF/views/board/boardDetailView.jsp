@@ -159,7 +159,7 @@
 										   +"<td>"+reply.replyContent +"</td>"
 										   +"<td>"+reply.createDate +"</td>"
 							    if(reply.replyWriter == '${loginUser.nickName}'){	   
-									html += "<td><a class='btn-sm btn-primary' href='javascript:void(0)' onclick='updateModal("+reply.replyNo+");'>수정하기</a></td>"
+									html += "<td><a class='btn-sm btn-primary' href='javascript:void(0)' onclick='updateModal("+reply.replyNo+ ", \"" + reply.replyContent+"\");'>수정하기</a></td>"
 											+"<td><a class='btn-sm btn-danger' href='javascript:void(0)' onclick='deleteReply("+reply.replyNo+");'>삭제하기</a></td>";
 									}
 									html +=  "</tr>";
@@ -174,10 +174,11 @@
 						})
 					}
 					
-					function updateModal(replyNo){
+					function updateModal(replyNo,replyContent){
 						$("#updateModalBtn").click(function(){
 							updateReply(replyNo);
 						});
+						$("#updateReplyContent").text(replyContent);
 						$("#updateModal").modal('show');
 					}
 					
