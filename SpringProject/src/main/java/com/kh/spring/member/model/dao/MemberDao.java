@@ -27,4 +27,7 @@ public class MemberDao {
 		return (ArrayList)sqlSession.selectList("memberMapper.selectAll");
 	}
 	
+	public void updateMemberChangePwd() {
+		sqlSession.update("memberMapper.updateMemberChangePwd");
+	}
 }

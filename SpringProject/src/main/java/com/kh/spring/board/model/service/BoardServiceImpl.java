@@ -201,4 +201,8 @@ public class BoardServiceImpl implements BoardService{
 		}
 		return result;
 	}
+	
+	public List<String> selectBoardImgList() {
+		return boardDao.selectBoardImgList();
+	}
 }
