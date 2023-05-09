@@ -47,6 +47,9 @@ public class BoardServiceImpl implements BoardService{
 	
 	// 게시글 상세조회 구현 서비스
 	public Board selectBoardDetail(int boardNo) {
+//		if(true) {
+//			throw new RuntimeException("예외발생");
+//		}
 		return boardDao.selectBoardDetail(boardNo);
 	}
 	

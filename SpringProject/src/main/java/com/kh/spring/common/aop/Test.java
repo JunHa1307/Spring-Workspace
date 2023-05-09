@@ -3,6 +3,7 @@ package com.kh.spring.common.aop;
 import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.annotation.Pointcut;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -33,15 +34,20 @@ public class Test {
 	 * 
 	 * com.kh.spring.board 패키지 아래에 있는 Impl로 끝나는 클래스의 모든 메서드에 (매개변수와 상관없이) 포인트 컷 지정
 	 */
-	@Before("execution(* com.kh.spring.board..*Impl*.*(..))")
+//	@Before("execution(* com.kh.spring.board..*Impl*.*(..))")
 	public void start() { // 서비스 수행전에 실행되는 메서드(advice)
 		logger.info("=================== Service Start ==================");
 	}
 	
 	// @After " PointCut에 지젖ㅇ된 메소드가 수행된 후, ㅁㅇ퍛ㄷ수행을 하라고 지시하는 어노테이션
 	
-	@After("execution(* com.kh.spring.board..*Impl*.*(..))")
+//	@After("testPointcut()")
 	public void end() {
 		logger.info("=================== Service End ==================");
 	}
+	
+	// @Pointcut을 작성해 놓은 메소드
+	// -> Pointcut의 패턴이작성되는 부분에 testPointcut()메서드 이름을 작성하면, Pointcut에 정의한 패턴이 적용된다.
+	@Pointcut("execution(* com.kh.spring.board..*Impl*.*(..))")
+	public void testPointcut() {} // 내용작성x
 }
