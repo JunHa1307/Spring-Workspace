@@ -23,10 +23,11 @@ public class AfterReturningTest {
 	@AfterReturning(pointcut = "CommonPointcut.implPointcut()", returning = "returnObj")
 	public void returnValue(JoinPoint jp, Object returnObj) {
 		
-		if(returnObj instanceof Member) {
-			Member loginMember = (Member) returnObj;
-			loginMember.setNickName("민경민경");
-		}
+//		returnObject를 가져와서 변환도 할 수 있다.
+//		if(returnObj instanceof Member) {
+//			Member loginMember = (Member) returnObj;
+//			loginMember.setNickName("민경민경");
+//		} 
 		logger.info("return value : {}", returnObj);
 	}
 }
